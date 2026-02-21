@@ -14,24 +14,24 @@
 
     --dark: #0A2342;
     --dark-soft: #1A3A5C;
-    --text: #2D3748;
-    --text-light: #718096;
-    --text-muted: #A0AEC0;
+    --text: #E2E8F0;
+    --text-light: #A0AEC0;
+    --text-muted: #718096;
 
-    --bg: #FFFFFF;
-    --bg-soft: #F7FAFC;
-    --bg-alt: #EDF2F7;
-    --bg-card: #FFFFFF;
+    --bg: #0D2137;
+    --bg-soft: #0A1B2E;
+    --bg-alt: #112A45;
+    --bg-card: rgba(255, 255, 255, 0.05);
 
     --white: #FFFFFF;
-    --border: rgba(226, 232, 240, 0.8);
+    --border: rgba(255, 255, 255, 0.1);
 
     /* Gradients */
     --gradient-hero: linear-gradient(135deg, #0A2342 0%, #0D7377 50%, #14919B 100%);
     --gradient-primary: linear-gradient(135deg, #0D7377, #14919B);
     --gradient-accent: linear-gradient(135deg, #38B2AC, #81E6D9);
     --gradient-dark: linear-gradient(135deg, #0A2342 0%, #1A3A5C 100%);
-    --gradient-card: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(247, 250, 252, 0.9));
+    --gradient-card: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
 
     /* Shadows */
     --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
@@ -130,7 +130,7 @@ ol {
     font-size: clamp(1.8rem, 4vw, 2.8rem);
     font-weight: 700;
     line-height: 1.2;
-    color: var(--dark);
+    color: var(--white);
     margin-bottom: 20px;
 }
 
@@ -219,11 +219,11 @@ ol {
 
 .navbar.scrolled {
     padding: 10px 0;
-    background: rgba(255, 255, 255, 0.92);
+    background: rgba(10, 27, 46, 0.95);
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border-bottom: 1px solid var(--border);
-    box-shadow: var(--shadow-sm);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
 }
 
 .navbar-inner {
@@ -274,7 +274,7 @@ ol {
 }
 
 .navbar.scrolled .brand-name {
-    color: var(--dark);
+    color: var(--white);
 }
 
 .brand-subtitle {
@@ -286,7 +286,7 @@ ol {
 }
 
 .navbar.scrolled .brand-subtitle {
-    color: var(--text-light);
+    color: rgba(255, 255, 255, 0.6);
 }
 
 .navbar-nav {
@@ -313,13 +313,13 @@ ol {
 }
 
 .navbar.scrolled .nav-link {
-    color: var(--text);
+    color: rgba(255, 255, 255, 0.85);
 }
 
 .navbar.scrolled .nav-link:hover,
 .navbar.scrolled .nav-link.active {
-    color: var(--primary);
-    background: var(--primary-glow);
+    color: var(--white);
+    background: rgba(255, 255, 255, 0.1);
 }
 
 .nav-cta {
@@ -369,7 +369,7 @@ ol {
 }
 
 .navbar.scrolled .toggler-line {
-    background: var(--dark);
+    background: var(--white);
 }
 
 .navbar-toggler.active .toggler-line:nth-child(1) {
@@ -624,7 +624,7 @@ ol {
     align-items: center;
     gap: 12px;
     padding: 16px 20px;
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(20px);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-lg);
@@ -646,12 +646,12 @@ ol {
     display: block;
     font-family: var(--font-heading);
     font-size: 0.9rem;
-    color: var(--dark);
+    color: var(--white);
 }
 
 .about-experience-badge span {
     font-size: 0.78rem;
-    color: var(--text-light);
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .about-text {
@@ -765,33 +765,33 @@ ol {
 }
 
 .service-icon-1 {
-    background: rgba(13, 115, 119, 0.1);
-    color: #0D7377;
+    background: rgba(56, 178, 172, 0.2);
+    color: #81E6D9;
 }
 
 .service-icon-2 {
-    background: rgba(56, 178, 172, 0.1);
-    color: #38B2AC;
+    background: rgba(56, 178, 172, 0.2);
+    color: #4FD1C5;
 }
 
 .service-icon-3 {
-    background: rgba(237, 137, 54, 0.1);
-    color: #ED8936;
+    background: rgba(13, 115, 119, 0.25);
+    color: #38B2AC;
 }
 
 .service-icon-4 {
-    background: rgba(159, 122, 234, 0.1);
-    color: #9F7AEA;
+    background: rgba(20, 145, 155, 0.2);
+    color: #81E6D9;
 }
 
 .service-icon-5 {
-    background: rgba(66, 153, 225, 0.1);
-    color: #4299E1;
+    background: rgba(56, 178, 172, 0.2);
+    color: #4FD1C5;
 }
 
 .service-icon-6 {
-    background: rgba(237, 100, 166, 0.1);
-    color: #ED64A6;
+    background: rgba(13, 115, 119, 0.25);
+    color: #38B2AC;
 }
 
 .service-card:hover .service-icon {
@@ -802,7 +802,7 @@ ol {
     font-family: var(--font-heading);
     font-size: 1.15rem;
     font-weight: 600;
-    color: var(--dark);
+    color: var(--white);
     margin-bottom: 12px;
 }
 
@@ -899,7 +899,7 @@ ol {
     font-family: var(--font-heading);
     font-size: 1rem;
     font-weight: 600;
-    color: var(--dark);
+    color: var(--white);
     margin-bottom: 6px;
 }
 
@@ -1033,8 +1033,313 @@ ol {
 }
 
 /* =============================================
-   WHATSAPP FLOATING BUTTON
+   VIDEOS SECTION
    ============================================= */
+.videos {
+    background: var(--bg);
+    position: relative;
+}
+
+.videos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin-bottom: 40px;
+}
+
+.video-card {
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border);
+    transition: var(--transition);
+}
+
+.video-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+}
+
+.video-card iframe {
+    display: block;
+    width: 100%;
+    min-height: 480px;
+    border: none;
+}
+
+.video-card video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 9/16;
+    max-height: 520px;
+    object-fit: cover;
+    background: #000;
+}
+
+.video-placeholder {
+    aspect-ratio: 9/16;
+    max-height: 480px;
+    background: var(--gradient-dark);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 0.85rem;
+}
+
+.videos-cta {
+    text-align: center;
+}
+
+.videos-cta .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* =============================================
+   REVIEWS SECTION (Dark Theme)
+   ============================================= */
+.reviews {
+    background: var(--gradient-dark);
+    position: relative;
+    overflow: hidden;
+}
+
+.reviews::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 20% 80%, rgba(13, 115, 119, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(56, 178, 172, 0.15) 0%, transparent 50%);
+}
+
+.reviews .container {
+    position: relative;
+    z-index: 1;
+}
+
+.section-label-light {
+    background: rgba(56, 178, 172, 0.15) !important;
+    color: var(--accent-light) !important;
+    border-color: rgba(56, 178, 172, 0.3) !important;
+}
+
+.reviews-title {
+    color: var(--white) !important;
+}
+
+.text-accent-light {
+    background: linear-gradient(135deg, var(--accent-light), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.reviews-google-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-full);
+    color: var(--white);
+    font-size: 0.9rem;
+    margin-top: 16px;
+}
+
+.review-stars {
+    display: flex;
+    gap: 2px;
+}
+
+.reviews-carousel {
+    overflow: hidden;
+    margin: 0 -20px;
+    padding: 0 20px;
+}
+
+.reviews-track {
+    display: flex;
+    gap: 24px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 10px;
+}
+
+.reviews-track::-webkit-scrollbar {
+    display: none;
+}
+
+.review-card {
+    flex: 0 0 calc(33.333% - 16px);
+    min-width: 300px;
+    scroll-snap-align: start;
+    padding: 28px;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-xl);
+    transition: var(--transition);
+}
+
+.review-card:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.review-card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.review-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: var(--gradient-primary);
+    color: var(--white);
+    border-radius: 50%;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.review-author {
+    flex: 1;
+}
+
+.review-author strong {
+    display: block;
+    color: var(--white);
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.review-author span {
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.review-rating {
+    display: flex;
+    gap: 2px;
+}
+
+.review-text {
+    font-size: 0.92rem;
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.7;
+}
+
+.reviews-cta {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.btn-review {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 32px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-full);
+    color: var(--white);
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.btn-review:hover {
+    background: rgba(255, 255, 255, 0.18);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.reviews-embed iframe {
+    width: 100%;
+    min-height: 450px;
+    border: 0;
+    border-radius: 20px;
+}
+
+/* =============================================
+   FLOATING BUTTONS (Instagram + WhatsApp)
+   ============================================= */
+.instagram-float {
+    position: fixed;
+    bottom: 102px;
+    right: 32px;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    border-radius: 50%;
+    color: var(--white);
+    box-shadow: 0 4px 20px rgba(225, 48, 108, 0.4);
+    transition: var(--transition);
+    animation: pulse-instagram 2s ease-in-out infinite;
+}
+
+.instagram-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 30px rgba(225, 48, 108, 0.5);
+}
+
+.instagram-tooltip {
+    position: absolute;
+    right: 72px;
+    background: var(--dark);
+    color: var(--white);
+    padding: 8px 16px;
+    border-radius: var(--radius-sm);
+    font-size: 0.82rem;
+    font-weight: 500;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: var(--transition);
+    transform: translateX(10px);
+}
+
+.instagram-float:hover .instagram-tooltip {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+@keyframes pulse-instagram {
+
+    0%,
+    100% {
+        box-shadow: 0 4px 20px rgba(225, 48, 108, 0.4);
+    }
+
+    50% {
+        box-shadow: 0 4px 30px rgba(225, 48, 108, 0.6), 0 0 0 10px rgba(225, 48, 108, 0.1);
+    }
+}
+
 .whatsapp-float {
     position: fixed;
     bottom: 32px;
@@ -1140,6 +1445,20 @@ ol {
 
     .services-grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .videos-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .videos-grid .video-card:last-child {
+        grid-column: span 2;
+        max-width: 50%;
+        justify-self: center;
+    }
+
+    .review-card {
+        flex: 0 0 calc(50% - 12px);
     }
 
     .footer-grid {
@@ -1315,7 +1634,7 @@ ol {
         margin: 0 auto;
     }
 
-    .about-image-placeholder {
+    .about-image {
         aspect-ratio: 4/3;
     }
 
@@ -1434,9 +1753,16 @@ ol {
         font-size: 0.75rem;
     }
 
-    /* WhatsApp */
+    /* WhatsApp & Instagram */
     .whatsapp-float {
         bottom: 20px;
+        right: 20px;
+        width: 52px;
+        height: 52px;
+    }
+
+    .instagram-float {
+        bottom: 82px;
         right: 20px;
         width: 52px;
         height: 52px;
@@ -1447,8 +1773,36 @@ ol {
         height: 24px;
     }
 
-    .whatsapp-tooltip {
+    .instagram-float svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    .whatsapp-tooltip,
+    .instagram-tooltip {
         display: none;
+    }
+
+    /* Videos */
+    .videos-grid {
+        grid-template-columns: 1fr;
+        max-width: 360px;
+        margin: 0 auto 40px;
+    }
+
+    .videos-grid .video-card:last-child {
+        grid-column: auto;
+        max-width: 100%;
+    }
+
+    .video-card iframe {
+        min-height: 400px;
+    }
+
+    /* Reviews */
+    .review-card {
+        flex: 0 0 85%;
+        min-width: 260px;
     }
 }
 
@@ -1531,7 +1885,7 @@ ol {
         font-size: 1.3rem;
     }
 
-    .about-image-placeholder {
+    .about-image {
         aspect-ratio: 1/1;
     }
 }
