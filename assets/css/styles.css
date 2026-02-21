@@ -608,16 +608,11 @@ ol {
     box-shadow: var(--shadow-xl);
 }
 
-.about-image-placeholder {
+.about-image {
+    width: 100%;
     aspect-ratio: 3/4;
-    background: var(--gradient-dark);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    color: rgba(255, 255, 255, 0.5);
-    font-size: 0.9rem;
+    object-fit: cover;
+    display: block;
 }
 
 .about-experience-badge {
