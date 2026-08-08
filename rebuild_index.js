@@ -1,0 +1,289 @@
+const fs = require('fs');
+
+// Read data.js
+let dataContent = fs.readFileSync('hastaliklar/data.js', 'utf8');
+dataContent = dataContent + '\nmodule.exports = { CATEGORY_DATA, DISEASE_DATA };';
+fs.writeFileSync('temp_data.js', dataContent);
+
+const { CATEGORY_DATA, DISEASE_DATA } = require('./temp_data.js');
+
+let html = `<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hastalıklar | Ata Fizyoterapi - Aksaray Fizyoterapi ve Rehabilitasyon</title>
+    <meta name="description" content="Bel, boyun, diz, omuz ve daha birçok alanda fizyoterapi ile tedavi sağladığımız tüm hastalıkların listesi. Aksaray Ata Fizyoterapi.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://atafizyoterapi.com/hastaliklar/">
+    <link rel="icon" type="image/png" href="../assets/images/logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <style>
+        .compact-category-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: 32px;
+            transition: var(--transition);
+            height: 100%;
+        }
+        .compact-category-card:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow-md);
+        }
+        .compact-category-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .compact-category-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            background: rgba(13, 115, 119, 0.15);
+            color: var(--accent);
+            border-radius: var(--radius-lg);
+        }
+        .compact-category-title {
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--white);
+            margin: 0;
+        }
+        .compact-disease-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .compact-disease-list li a {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: var(--text-light);
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+            background: rgba(255,255,255,0.02);
+            font-size: 0.95rem;
+        }
+        .compact-disease-list li a:hover {
+            background: rgba(13, 115, 119, 0.1);
+            color: var(--primary-light);
+            padding-left: 16px;
+        }
+        .compact-disease-list li a svg {
+            opacity: 0.5;
+            transition: var(--transition);
+        }
+        .compact-disease-list li a:hover svg {
+            opacity: 1;
+            transform: translateX(4px);
+        }
+        @media (min-width: 768px) {
+            .compact-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 24px;
+            }
+        }
+        @media (min-width: 1024px) {
+            .compact-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar scrolled" id="navbar">
+        <div class="container navbar-inner">
+            <a href="../index.html" class="navbar-brand">
+                <div class="brand-icon">
+                    <img src="../assets/images/logo.png" alt="Ata Fizyoterapi Logo" width="40" height="40">
+                </div>
+                <div class="brand-text">
+                    <span class="brand-name">Ata Fizyoterapi</span>
+                    <span class="brand-subtitle">Fzt. Abdurrahman Talat Aslan</span>
+                </div>
+            </a>
+            <nav class="navbar-nav" id="navbarNav">
+                <a href="../index.html" class="nav-link">Anasayfa</a>
+                <a href="../index.html#about" class="nav-link">Hakkında</a>
+                <a href="../index.html#videos" class="nav-link">Videolar</a>
+                <a href="../index.html#procedures" class="nav-link">Hizmetlerimiz</a>
+                <a href="./" class="nav-link active">Hastalıklar</a>
+                <a href="../index.html#reviews" class="nav-link">Yorumlar</a>
+                <a href="../index.html#contact" class="nav-link">İletişim</a>
+                <a href="tel:+905339173374" class="nav-link nav-cta">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" /></svg>
+                    Randevu Al
+                </a>
+            </nav>
+            <button class="navbar-toggler" id="navbarToggler" aria-label="Menüyü aç/kapat">
+                <span class="toggler-line"></span>
+                <span class="toggler-line"></span>
+                <span class="toggler-line"></span>
+            </button>
+        </div>
+    </header>
+    
+    <div class="breadcrumb-section">
+        <div class="container">
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <a href="../index.html">Anasayfa</a>
+                <span class="breadcrumb-sep">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="9 18 15 12 9 6" />
+                    </svg>
+                </span>
+                <span class="breadcrumb-current">Hastalıklar</span>
+            </nav>
+        </div>
+    </div>
+
+    <section class="conditions-page-hero">
+        <div class="conditions-page-hero-bg"></div>
+        <div class="container">
+            <h1 class="section-title">Hastalıklar <span class="text-accent">Dizini</span></h1>
+            <p class="section-description mx-auto" style="margin-left:auto; margin-right:auto;">Ata Fizyoterapi olarak uzmanlaştığımız tüm rahatsızlıkları ve uyguladığımız fizyoterapi yaklaşımlarını aşağıdan inceleyebilirsiniz.</p>
+        </div>
+    </section>
+
+    <section class="disease-section" style="padding-top: 0;">
+        <div class="container">
+            <div class="compact-grid">`;
+
+CATEGORY_DATA.forEach(category => {
+    let diseasesInCategory = DISEASE_DATA.filter(d => d.category === category.id);
+    if(diseasesInCategory.length === 0) return;
+    
+    html += `
+                <div class="compact-category-card" data-reveal>
+                    <div class="compact-category-header">
+                        <div class="compact-category-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+                            </svg>
+                        </div>
+                        <h2 class="compact-category-title">${category.title}</h2>
+                    </div>
+                    <ul class="compact-disease-list">`;
+                    
+    diseasesInCategory.forEach(disease => {
+        html += `
+                        <li>
+                            <a href="${disease.slug}.html">
+                                ${disease.title}
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                            </a>
+                        </li>`;
+    });
+    
+    html += `
+                    </ul>
+                </div>`;
+});
+
+html += `
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <div class="brand-icon">
+                            <img src="../assets/images/logo.png" alt="Ata Fizyoterapi Logo" width="36" height="36">
+                        </div>
+                        <span class="brand-name">Ata Fizyoterapi</span>
+                    </div>
+                    <p class="footer-description">Aksaray'da profesyonel fizyoterapi ve rehabilitasyon hizmetleri. Modern yaklaşımlar, kişiye özel tedavi programları.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Hızlı Linkler</h4>
+                    <a href="../index.html">Anasayfa</a>
+                    <a href="../index.html#about">Hakkında</a>
+                    <a href="../index.html#procedures">Hizmetlerimiz</a>
+                    <a href="./">Hastalıklar</a>
+                    <a href="../index.html#contact">İletişim</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Hizmetlerimiz</h4>
+                    <a href="../index.html#procedures">Fizik Tedavi</a>
+                    <a href="../index.html#procedures">IKN</a>
+                    <a href="../index.html#procedures">Graston Tekniği</a>
+                    <a href="../index.html#procedures">Manuel Terapi</a>
+                </div>
+                <div class="footer-contact">
+                    <h4>İletişim</h4>
+                    <p>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+                        </svg>
+                        0533 917 33 74
+                    </p>
+                    <p>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                            <circle cx="12" cy="10" r="3" />
+                        </svg>
+                        Tacin mah. 105. Sok. No:25C
+                    </p>
+                    <div class="footer-social">
+                        <a href="https://www.instagram.com/fzt.talataslan" target="_blank" rel="noopener" aria-label="Instagram" class="social-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        </a>
+                        <a href="https://wa.me/905339173374" target="_blank" rel="noopener" aria-label="WhatsApp" class="social-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" /></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 atafizyoterapi.com — Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="../assets/js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const reveals = document.querySelectorAll('[data-reveal]');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('revealed');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+            reveals.forEach(el => observer.observe(el));
+            
+            // Navbar scroll
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 60) navbar.classList.add('scrolled');
+                else navbar.classList.remove('scrolled');
+            }, { passive: true });
+        });
+    </script>
+</body>
+</html>`;
+
+fs.writeFileSync('hastaliklar/index.html', html);
+console.log('Successfully generated compact index.html');
+fs.unlinkSync('temp_data.js');

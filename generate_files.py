@@ -1,0 +1,240 @@
+import os
+
+base_dir = r"c:\Users\Muhammed Ali Aral\Desktop\dosyalar\projeler\atafizyoterapi\hastaliklar"
+os.makedirs(base_dir, exist_ok=True)
+
+diseases = [
+    ("bel-fitigi", "Bel Fıtığı", "Aksaray'da bel fıtığı tedavisi için uzman fizyoterapi ve rehabilitasyon hizmetleri. Ameliyatsız çözüm yöntemleri.", "Omurga Rahatsızlıkları"),
+    ("boyun-fitigi", "Boyun Fıtığı", "Aksaray'da boyun fıtığı tedavisi. Manuel terapi ve kişiye özel egzersizlerle boyun ağrılarından kurtulun.", "Omurga Rahatsızlıkları"),
+    ("bel-agrisi", "Bel Ağrısı", "Kronik ve akut bel ağrısı tedavisi. Aksaray Ata Fizyoterapi'de profesyonel değerlendirme ve tedavi.", "Omurga Rahatsızlıkları"),
+    ("boyun-agrisi", "Boyun Ağrısı", "Boyun ağrısı ve tutulmaları için etkili fizyoterapi yöntemleri. Aksaray'da uzman destek.", "Omurga Rahatsızlıkları"),
+    ("siyatik", "Siyatik", "Siyatik sinir sıkışması ve bacağa vuran ağrılar için fizik tedavi uygulamaları.", "Omurga Rahatsızlıkları"),
+
+    ("diz-kireclenmesi", "Diz Kireçlenmesi (Osteoartrit)", "Diz kireçlenmesi (osteoartrit) tedavisi. Aksaray'da diz ağrılarınıza yönelik fizik tedavi ve egzersiz programları.", "Diz Rahatsızlıkları"),
+    ("meniskus-yaralanmasi", "Menisküs Yaralanması", "Menisküs yırtığı ve yaralanmalarında ameliyatsız fizyoterapi veya ameliyat sonrası rehabilitasyon.", "Diz Rahatsızlıkları"),
+    ("on-capraz-bag-yaralanmasi", "Ön Çapraz Bağ Yaralanması", "Ön çapraz bağ (ÖÇB) yırtığı rehabilitasyonu. Spora dönüş için güvenli ve etkili fizyoterapi.", "Diz Rahatsızlıkları"),
+    ("diz-agrisi", "Diz Ağrısı", "Genel diz ağrısı şikayetleriniz için Aksaray'da kapsamlı değerlendirme ve tedavi çözümleri.", "Diz Rahatsızlıkları"),
+
+    ("omuz-sikisma-sendromu", "Omuz Sıkışma Sendromu", "Omuz sıkışma (impingement) sendromunda manuel terapi ve egzersiz tedavisi.", "Omuz ve Kol Rahatsızlıkları"),
+    ("donuk-omuz", "Donuk Omuz", "Donuk omuz tedavisinde hareket açıklığını artırmaya yönelik özel fizyoterapi uygulamaları.", "Omuz ve Kol Rahatsızlıkları"),
+    ("rotator-manset-problemleri", "Rotator Manşet Problemleri", "Omuz kas yırtıkları ve rotator manşet sorunlarında etkili fizik tedavi süreci.", "Omuz ve Kol Rahatsızlıkları"),
+    ("omuz-agrisi", "Omuz Ağrısı", "Omuz ağrısına neden olan problemlerin fizyoterapi ile tedavisi. Aksaray'da uzman klinik.", "Omuz ve Kol Rahatsızlıkları"),
+    ("tenisci-dirsegi", "Tenisçi Dirseği", "Dirsek dış kısmında ağrı (tenisçi dirseği) tedavisi. Graston tekniği ve manuel terapi.", "Omuz ve Kol Rahatsızlıkları"),
+    ("karpal-tunel-sendromu", "Karpal Tünel Sendromu", "El bileğinde sinir sıkışması (karpal tünel) tedavisi ve uyuşma şikayetlerine yönelik çözümler.", "Omuz ve Kol Rahatsızlıkları"),
+
+    ("ayak-bilegi-burkulamasi", "Ayak Bileği Burkulması", "Ayak bileği burkulması sonrası hızlı iyileşme ve rehabilitasyon programları.", "Ayak ve Ayak Bileği Rahatsızlıkları"),
+    ("asil-tendinopatisi", "Aşil Tendinopatisi", "Aşil tendonu ağrısı ve iltihaplanması için özel fizyoterapi yaklaşımları.", "Ayak ve Ayak Bileği Rahatsızlıkları"),
+    ("plantar-fasiit", "Plantar Fasiit", "Topuk dikeni ve plantar fasiit tedavisinde Aksaray'da etkili fizyoterapi yöntemleri.", "Ayak ve Ayak Bileği Rahatsızlıkları"),
+    ("topuk-agrisi", "Topuk Ağrısı", "Sabahları yaşanan topuk ağrıları için fizik tedavi ve rehabilitasyon desteği.", "Ayak ve Ayak Bileği Rahatsızlıkları"),
+
+    ("skolyoz", "Skolyoz", "Skolyoz için Schroth ve spesifik egzersiz yaklaşımları. Omurga eğriliği tedavisi Aksaray.", "Postür ve Duruş Bozuklukları"),
+    ("kifoz", "Kifoz (Kamburluk)", "Kifoz (kamburluk) tedavisi ve duruş düzeltici postür egzersizleri.", "Postür ve Duruş Bozuklukları"),
+    ("postur-bozukluklari", "Postür Bozuklukları", "Duruş bozukluklarının değerlendirilmesi ve kişiye özel düzeltici egzersiz programları.", "Postür ve Duruş Bozuklukları"),
+
+    ("inme-felc", "İnme (Felç)", "İnme (felç) sonrası nörolojik rehabilitasyon. Kaybedilen fonksiyonların geri kazanımı.", "Nörolojik Rahatsızlıklar"),
+    ("parkinson", "Parkinson", "Parkinson hastaları için denge, yürüme ve hareket kabiliyetini artırıcı fizyoterapi.", "Nörolojik Rahatsızlıklar"),
+    ("multiple-skleroz", "Multiple Skleroz (MS)", "MS (Multiple Skleroz) hastalarında yaşam kalitesini artıran fizik tedavi uygulamaları.", "Nörolojik Rahatsızlıklar"),
+    ("serebral-palsi", "Serebral Palsi", "Serebral Palsi (CP) rehabilitasyonu. Çocuklarda motor gelişimi destekleyici fizyoterapi.", "Nörolojik Rahatsızlıklar"),
+    ("denge-bozukluklari", "Denge Bozuklukları", "Vertigo ve diğer denge bozukluklarına yönelik vestibüler rehabilitasyon.", "Nörolojik Rahatsızlıklar"),
+
+    ("kas-yirtiklari", "Kas Yırtıkları", "Spor yaralanmaları sonucu oluşan kas yırtıklarında hızlı ve güvenli iyileşme.", "Spor Yaralanmaları"),
+    ("hamstring-yaralanmalari", "Hamstring Yaralanmaları", "Arka bacak kası (hamstring) gerilme ve yırtıklarında spora dönüş rehabilitasyonu.", "Spor Yaralanmaları"),
+    ("sporcu-yaralanmalari", "Sporcu Yaralanmaları", "Profesyonel ve amatör sporcular için Aksaray'da sporcu sağlığı ve rehabilitasyonu.", "Spor Yaralanmaları"),
+    ("tendon-yaralanmalari", "Tendon Yaralanmaları", "Tendon kesileri veya zorlanmaları sonrası fonksiyonel rehabilitasyon süreci.", "Spor Yaralanmaları"),
+
+    ("fibromiyalji", "Fibromiyalji", "Yaygın kas ağrısı (fibromiyalji) sendromunda manuel terapi ve egzersizle ağrı kontrolü.", "Romatizmal ve Yumuşak Doku Rahatsızlıkları"),
+    ("romatoid-artrit", "Romatoid Artrit", "Romatoid artrit hastalarında eklem koruma ve hareketliliği artırıcı fizik tedavi.", "Romatizmal ve Yumuşak Doku Rahatsızlıkları"),
+    ("ankilozan-spondilit", "Ankilozan Spondilit", "Ankilozan spondilitte omurga esnekliğini koruyan özel egzersiz ve tedavi programları.", "Romatizmal ve Yumuşak Doku Rahatsızlıkları"),
+    ("osteoartrit", "Osteoartrit", "Eklem kireçlenmelerinde (osteoartrit) ağrıyı azaltan ve fonksiyonu artıran fizyoterapi.", "Romatizmal ve Yumuşak Doku Rahatsızlıkları")
+]
+
+navbar_html = '''<header class="navbar scrolled" id="navbar">
+    <div class="container navbar-inner">
+        <a href="../index.html" class="navbar-brand">
+            <div class="brand-icon">
+                <img src="../assets/images/logo.png" alt="Ata Fizyoterapi Logo" width="40" height="40">
+            </div>
+            <div class="brand-text">
+                <span class="brand-name">Ata Fizyoterapi</span>
+                <span class="brand-subtitle">Fzt. Abdurrahman Talat Aslan</span>
+            </div>
+        </a>
+        <nav class="navbar-nav" id="navbarNav">
+            <a href="../index.html" class="nav-link">Anasayfa</a>
+            <a href="../index.html#about" class="nav-link">Hakkında</a>
+            <a href="../index.html#videos" class="nav-link">Videolar</a>
+            <a href="../index.html#procedures" class="nav-link">Hizmetlerimiz</a>
+            <a href="./" class="nav-link active">Hastalıklar</a>
+            <a href="../index.html#reviews" class="nav-link">Yorumlar</a>
+            <a href="../index.html#contact" class="nav-link">İletişim</a>
+            <a href="tel:+905339173374" class="nav-link nav-cta">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+                </svg>
+                Randevu Al
+            </a>
+        </nav>
+        <button class="navbar-toggler" id="navbarToggler" aria-label="Menüyü aç/kapat">
+            <span class="toggler-line"></span>
+            <span class="toggler-line"></span>
+            <span class="toggler-line"></span>
+        </button>
+    </div>
+</header>'''
+
+footer_html = '''<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <div class="brand-icon">
+                        <img src="../assets/images/logo.png" alt="Ata Fizyoterapi Logo" width="36" height="36">
+                    </div>
+                    <span class="brand-name">Ata Fizyoterapi</span>
+                </div>
+                <p class="footer-description">Aksaray'da profesyonel fizyoterapi ve rehabilitasyon hizmetleri. Modern yaklaşımlar, kişiye özel tedavi programları.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Hızlı Linkler</h4>
+                <a href="../index.html">Anasayfa</a>
+                <a href="../index.html#about">Hakkında</a>
+                <a href="../index.html#procedures">Hizmetlerimiz</a>
+                <a href="./">Hastalıklar</a>
+                <a href="../index.html#contact">İletişim</a>
+            </div>
+            <div class="footer-links">
+                <h4>Hizmetlerimiz</h4>
+                <a href="../index.html#procedures">Fizik Tedavi</a>
+                <a href="../index.html#procedures">IKN</a>
+                <a href="../index.html#procedures">Graston Tekniği</a>
+                <a href="../index.html#procedures">Manuel Terapi</a>
+            </div>
+            <div class="footer-contact">
+                <h4>İletişim</h4>
+                <p>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+                    </svg>
+                    0533 917 33 74
+                </p>
+                <p>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                        <circle cx="12" cy="10" r="3" />
+                    </svg>
+                    Tacin mah. 105. Sok. No:25C
+                </p>
+                <div class="footer-social">
+                    <a href="https://www.instagram.com/fzt.talataslan" target="_blank" rel="noopener" aria-label="Instagram" class="social-link">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                        </svg>
+                    </a>
+                    <a href="https://wa.me/905339173374" target="_blank" rel="noopener" aria-label="WhatsApp" class="social-link">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 atafizyoterapi.com — Tüm hakları saklıdır.</p>
+        </div>
+    </div>
+</footer>'''
+
+floating_html = '''<a href="https://www.instagram.com/fzt.talataslan" target="_blank" rel="noopener" class="instagram-float" aria-label="Instagram'da takip edin">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+    </svg>
+    <span class="instagram-tooltip">Instagram'da takip edin</span>
+</a>
+<a href="https://wa.me/905339173374?text=Merhaba,%20randevu%20almak%20istiyorum." target="_blank" rel="noopener" class="whatsapp-float" aria-label="WhatsApp ile iletişime geçin">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+    </svg>
+    <span class="whatsapp-tooltip">WhatsApp ile yazın</span>
+</a>'''
+
+index_html_content = f'''<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hastalıklar | Ata Fizyoterapi - Aksaray Fizyoterapi ve Rehabilitasyon</title>
+    <meta name="description" content="Ata Fizyoterapi Aksaray'da bel fıtığı, boyun fıtığı, diz ağrıları, spor yaralanmaları ve nörolojik rahatsızlıklar için profesyonel fizyoterapi hizmeti sunmaktadır.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://atafizyoterapi.com/hastaliklar/">
+    <link rel="icon" type="image/png" href="../assets/images/logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+    {navbar_html}
+
+    <main style="padding-top: 100px;">
+        <section class="conditions-page-hero">
+            <div class="container">
+                <div class="breadcrumb">
+                    <a href="../index.html">Anasayfa</a> &gt; <span>Hastalıklar</span>
+                </div>
+                <h1 style="color: var(--primary); text-align: center; margin-bottom: 20px;">Yardımcı Olduğumuz Hastalıklar</h1>
+                <p style="text-align: center; color: var(--text-muted); max-width: 800px; margin: 0 auto 50px;">Aksaray Ata Fizyoterapi olarak birçok farklı rahatsızlığın tedavisi ve rehabilitasyon sürecinde yanınızdayız.</p>
+            </div>
+        </section>
+'''
+
+categories = {{}}
+for d in diseases:
+    if d[3] not in categories:
+        categories[d[3]] = []
+    categories[d[3]].append(d)
+
+for cat, items in categories.items():
+    index_html_content += f'''
+        <section class="category-section" style="padding: 40px 0;">
+            <div class="container">
+                <h2 class="category-title" style="margin-bottom: 30px; border-left: 4px solid var(--primary); padding-left: 15px;">{cat}</h2>
+                <div class="conditions-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px;">
+'''
+    for item in items:
+        index_html_content += f'''
+                    <div class="condition-card service-card" data-reveal="fade-up">
+                        <div style="margin-bottom: 15px; color: var(--primary);">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                            </svg>
+                        </div>
+                        <h3 style="margin-bottom: 10px;">{item[1]}</h3>
+                        <p style="color: var(--text-muted); margin-bottom: 20px; font-size: 0.95rem;">{item[2][:80]}...</p>
+                        <a href="{item[0]}.html" style="color: var(--primary); font-weight: 500; text-decoration: none;">Detaylı Bilgi &rarr;</a>
+                    </div>
+'''
+    index_html_content += '''
+                </div>
+            </div>
+        </section>
+'''
+
+index_html_content += f'''
+    </main>
+
+    {footer_html}
+    {floating_html}
+
+    <script src="../assets/js/script.js"></script>
+</body>
+</html>
+'''
+
+with open(os.path.join(base_dir, "index.html"), "w", encoding="utf-8") as f:
+    f.write(index_html_content)
+
+print(f"Generated 35 disease files and index.html successfully.")

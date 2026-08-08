@@ -8,6 +8,7 @@ let urls = [];
 
 // Add main pages
 urls.push(`${baseUrl}/index.html`);
+urls.push(`${baseUrl}/videolar.html`);
 urls.push(`${baseUrl}/hastaliklar/index.html`);
 
 // Read hastaliklar directory
