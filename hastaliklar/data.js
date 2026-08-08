@@ -1,4 +1,4 @@
-export const CATEGORY_DATA = [
+const CATEGORY_DATA = [
   { id: "bel-ve-boyun", title: "Bel ve Boyun", icon: "activity" },
   { id: "diz", title: "Diz", icon: "activity" },
   { id: "omuz-ve-kol", title: "Omuz ve Kol", icon: "activity" },
@@ -9,7 +9,7 @@ export const CATEGORY_DATA = [
   { id: "romatolojik-problemler", title: "Romatolojik Problemler", icon: "activity" }
 ];
 
-export const DISEASE_DATA = [
+const DISEASE_DATA = [
   // ----------------------------------------------------
   // 1. BEL VE BOYUN (bel-ve-boyun)
   // ----------------------------------------------------
