@@ -1,6 +1,6 @@
 # Ata Fizyoterapi Web Sitesi
 
-🌐 **[https://atafizyoterapi.com/]https://atafizyoterapi.com/)**
+🌐 **[https://atafizyoterapi.com/]**
 
 Aksaray'ın en dinamik Fizyoterapi ve Rehabilitasyon Merkezi — Fizyoterapist Abdurrahman Talat Aslan.
 
